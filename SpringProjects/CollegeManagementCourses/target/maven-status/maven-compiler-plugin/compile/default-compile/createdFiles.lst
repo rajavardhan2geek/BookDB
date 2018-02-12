@@ -1,0 +1,12 @@
+com\cms\controllers\StudentController.class
+com\Application\Main\CollegeMainApp.class
+com\cms\models\Student.class
+com\cms\dao\CourseRepository.class
+com\cms\businessservice\StudentService.class
+com\cms\controllers\CoursesController.class
+com\cms\dao\MongoFactoryClient.class
+com\cms\models\Courses.class
+com\cms\dao\Coursesdao.class
+com\cms\models\Faculty.class
+com\cms\models\Person.class
+com\cms\dao\Studentdao.class

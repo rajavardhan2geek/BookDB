@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Student Enrollment into Course</title>
+<link rel='stylesheet' href="/webjars/bootstrap/css/bootstrap.min.css"></link>
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script type='text/javascript'>
+
+$(document).ready(function(element){
+
+	var state =$('#state');
+	state.change(function(){
+		var text =$(this).val();
+		console.log(text);
+	});
+	
+	 $("#content").html("Hello, World!");
+	var districts =$('#districts');
+	districts.change(function(){
+		var text =$(this).val();
+		console.log(text);
+	});
+	
+});
+
+</script>
+</head>
+<body>
+
+
+<div class='form-group'>
+<form action="/register" method="post">
+<label>Student Name</label>
+<input type='text' class="form-control" id="name"/>
+<label>Student Email</label>
+<input type='email'  class="form-control" id="email"/>
+<label>Student Father</label>
+<input type='text' class="form-control"id="father"/>
+<label>Student Mother</label>
+<input type='text' class="form-control" id="mother"/>
+<label>Student Course </label>
+<input type='text' class="form-control" id="course"/>
+<select id='country'>
+<option value="--None--">Select</option>
+<option>India</option>
+</select>
+<select id='state'>
+<option value="--None--">Select</option>
+<option value="TS">Telangana</option>
+<option value="AP">Andhra</option>
+<option value='TN'>TamilNadu</option>
+<option value='KA'>Karnataka</option>
+<option value='KL'>Kerala</option>
+</select>
+
+<select id='districts'>
+<option value="--None--">Select</option>
+</select>
+<input type='submit'  value='Enroll' class='btn btn-primary'/>
+<input type='button' value='Reset' class='btn btn-secondary'/>
+</form>
+</div>
+
+</body>
+
+</html>

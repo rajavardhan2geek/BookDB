@@ -1,0 +1,147 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>College Management System</title>
+<link rel='stylesheet' href="/webjars/bootstrap/css/bootstrap.min.css"></link>
+<!--  <script type="text/javascript" src="/webjars/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script type='text/javascript'>
+
+
+$(document).ready(function(){
+    // When an open tab item from your menu is clicked
+
+    $(".tab").hide();
+  //  $("#examtab").hide();
+    $(".open-tab").click(function(){
+        // Hide any of the content tabs
+        $(".tab").hide();
+        // Show your active tab (read from your data attribute)
+        $('[data-tab ="' + $(this).data('tab') + '"]').show();
+        // Optional: Highlight the selected tab
+        $('li.active').removeClass('active');
+        $(this).closest('li').addClass('active');
+    });
+    
+    $("#courses").click(function(){
+    	var html="";
+    	$("tbody").children().remove();
+    	$.ajax({
+    		
+            url: '/readall',
+            timeout:30000,
+            type: "GET",
+            success : function(msg) {
+
+            			var tablerow=$('#datarows');
+            			var coursenamehtml=$('#coursename');
+            			tablerow.html('dfdf');
+                   		//window.open("account_details.html");    
+                   		console.log(msg);
+                   		$.each(msg, function (key, item) {
+                         
+                   			
+                   			
+                   			
+                   			html+=   formatItem(item);
+                        });
+                   		
+                   		$('#recordscourses').append(html);
+          			  },
+    	complete:function(){
+    	$(this).prop('disabled', true);}
+			
+    	});
+    
+    });
+    
+});
+function formatItem(item) {
+    return '<tr><td><a href=/courses/'+item.courseid+'>' +item.courseid + '</a></td><td>' + item.coursename +'</td><td>'+item.courselimit+ '</td><td>' + item.coursehod + '</td></tr>';
+}
+
+</script>
+
+
+
+<nav class="navbar navbar-inverse"  >
+  <div class="container-fluid">
+    <div class="navbar-header" >
+      <a  class="navbar-brand " href="#">VIT College</a>
+    </div>
+    <div id='section'>
+    <ul  class="nav navbar-nav" >
+      <li   ><a href="#home"  class='open-tab' data-tab='home'>Home</a></li>
+      <li><a href="#courses"  class='open-tab' data-tab='courses' id='courses'>Courses</a></li>
+      <li><a href="/Home.html"  class='open-tab' data-tab='enrollment'>Enrollment</a></li>
+      <li><a href="#Examinations"  class='open-tab' data-tab='exam'>Examinations</a></li>
+      <li><a href="#Timetable"  class='open-tab' data-tab='timetable'>CourseTimetable</a></li>
+      <li><a href="#About"   class='open-tab' data-tab='About'>About Us</a></li>
+    </ul>
+    </div>
+  </div>
+</nav>
+ 
+ 
+ <!-- college home page flash -->
+ <div class="tab" data-tab='home' >
+ <div class='container'>
+<div class='collegeimages'> 
+<h1>Vellore Institute of Technology </h1>
+<img src='/college.jpg' alt='vit college' width='1000px' height='500px;'/>
+
+</div>
+</div>
+</div>
+<!--  courses page -->
+<div class="tab" data-tab='courses'  id='coursesdiv' >
+<div class='container'>
+<div class='row'>
+<div class="col-*-1">
+<table class='table table-hover' id='recordscourses'>
+<thead>
+<tr>
+<th>course id</th>
+<th>course name</th>
+<th>strength</th>
+<th>HOD</th>
+</tr>
+</thead>
+<tbody>
+<tr id='datarows'>
+<td id='courseid'> </td>
+<td id='coursename'></td>
+<td id="coursestrength"></td>
+</tr>
+</tbody>
+</table>
+<div class='content'>Your Course Content</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- Examination -->
+<div class='tab' data-tab='exam' id='examtab'>
+
+<div class='form-group'>
+<h3>Examination Results Page</h3>
+<form action="" method="post">
+<label>Student Id</label>
+<input type='text' class="form-control" id="name"/>
+<button id='result' class='btn btn-info'>get results</button>
+</form>
+
+
+</div>
+<button id='press'> Click Me</button>
+
+</body>
+</html>
